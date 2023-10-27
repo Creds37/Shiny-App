@@ -1,0 +1,61 @@
+---
+title: "Shiny app presentation"
+author: "Redson"
+date: "2023-10-27"
+output: ioslides_presentation
+---
+
+
+```{r}
+library(flexdashboard)
+library(shiny)
+
+```
+
+## R Markdown
+
+-Shiny is an open-source R package that enables building interactive web applications that can execute R code on the backend
+-It provides an elegant and powerful web framework for building web applications using R
+
+## A Shiny app
+
+-  This is a Shiny app that takes as input a phrase (multiple words) in a text box input and outputs a prediction of the next word.
+- This Shiny app with a text prediction model stands out due to its utilization of an advanced Natural Language Processing model that understands user input contextually. 
+- It offers a user-friendly interface with adjustable parameters, allowing users to customize their experience.
+
+
+
+## Input Code
+
+```{r echo = TRUE}
+# ui.R
+shinyUI(fluidPage(
+  titlePanel("Simple Shiny App"),
+  sidebarLayout(
+    sidebarPanel(
+      numericInput("n", "Number of Points:", 50)
+    ),
+    mainPanel(
+      plotOutput("plot")
+    )
+  )
+))
+
+
+
+```
+
+## Server Code
+
+```{r pressure}
+library(shiny)
+# server.R
+shinyServer(function(input, output) {
+  output$plot <- renderPlot({
+    hist(runif(input$n))
+  })
+})
+
+```
+
+## Thank you
